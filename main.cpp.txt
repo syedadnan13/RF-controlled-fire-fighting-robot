@@ -1,0 +1,29 @@
+#include <Servo.h>
+Servo myservo;
+
+int flame=6;
+int pump=8;
+
+void setup()
+{
+Serial.begin(9600);
+pinMode(pump, OUTPUT);
+pinMode(flame, INPUT);
+myservo.attach(3);
+myservo.write(0);
+}
+
+void loop()
+{
+int flameval=digitalRead(flame);
+if(flameval==1)
+{
+digitalWrite(pump,LOW);
+myservo.write(110);
+}
+else
+{
+digitalWrite(pump,HIGH);
+myservo.write(130);
+}
+}
